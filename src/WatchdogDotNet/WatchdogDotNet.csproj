@@ -2,6 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Gordon Sulc</Authors>
+    <Copyright />
+    <PackageTags>watchdog;timer</PackageTags>
+    <PackageLicenseUrl>http://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/gsulc/WatchdogDotNet</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/gsulc/WatchdogDotNet</RepositoryUrl>
+    <Description>Adds functionality to the System.Timer class to easily use it as a watchdog timer.</Description>
   </PropertyGroup>
 
 </Project>
