@@ -10,7 +10,7 @@ namespace UnitTests
         [TestMethod]
         public void TestElapsedEventPrevented()
         {
-            bool timerElapsed = false;
+            bool watchdogElapsed = false;
             var testComplete = new System.Threading.ManualResetEventSlim(false);
 
             using (Timer watchdog = new Timer(50))
@@ -19,7 +19,7 @@ namespace UnitTests
                 {
                     using (Timer testLength = new Timer(500))
                     {
-                        watchdog.Elapsed += (s, e) => { timerElapsed = true; };
+                        watchdog.Elapsed += (s, e) => { watchdogElapsed = true; };
                         resetTimer.Elapsed += (s, e) => { watchdog.Restart(); };
                         testLength.Elapsed += (s, e) => { testComplete.Set(); };
 
@@ -36,7 +36,7 @@ namespace UnitTests
                 }
             }
 
-            Assert.IsFalse(timerElapsed);
+            Assert.IsFalse(watchdogElapsed);
         }
     }
 }

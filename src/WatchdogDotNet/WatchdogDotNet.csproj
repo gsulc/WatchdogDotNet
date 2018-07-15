@@ -10,6 +10,7 @@
     <RepositoryUrl>https://github.com/gsulc/WatchdogDotNet</RepositoryUrl>
     <Description>Adds functionality to the System.Timer class to easily use it as a watchdog timer.</Description>
     <NetStandardImplicitPackageVersion Condition=" '$(TargetFramework)' == 'netstandard2.0' ">2.0.3</NetStandardImplicitPackageVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net35' ">
