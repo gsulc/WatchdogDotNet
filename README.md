@@ -15,3 +15,5 @@ using (var watchdog = new Timer(timeout.TotalMilliseconds()))
   // Go do stuff.
 }
 ```
+## Targets / Requirements
+The earliest implementations of System.Timer are in the .NET Framework v3.5 and in .NET Standard 2.0, so these are the lowest targets you can use.
