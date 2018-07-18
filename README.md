@@ -6,13 +6,21 @@ Remember, Timer is IDisposable. You'll likely not use a using block, so make sur
 
 ```csharp
 TimeSpan timeout = TimeSpan.FromMinutes(10);
+TimeSpan checkPeriod = TimeSpan.FromSeconds(10);
 using (var watchdog = new Timer(timeout.TotalMilliseconds()))
 {
-  watchdog.AutoReset = false; // Often, you want to handle the problem only once. 
-  watchdog.Elapsed += (s, e) => { RecoverFromCatastrophe() };
-  watchdog.Start();
-  
-  // Go do stuff.
+    using (Timer resetTimer = new Timer(checkPeriod.TotalMilliseconds()))
+    {
+      watchdog.AutoReset = false; // Often, you want to handle the problem only once. 
+      watchdog.Elapsed += (s, e) => { RecoverFromCatastrophe() };
+      resetTimer.AutoReset = true;
+      resetTimer.Elapsed += (s, e) => 
+      {
+        if (IsEverythingOkay())
+          watchdog.Reset();
+      };
+      watchdog.Start();
+      resetTimer.Start();
 }
 ```
 ## Targets / Requirements
